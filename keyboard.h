@@ -3,7 +3,7 @@ Osk made by Poison from Xtreamlua.com
 
 This is an open software.
 
-I allow people to change/modify my own 
+I allow people to change/modify my own
 code and to publishe it everywhere.
 
 */
@@ -24,13 +24,11 @@ code and to publishe it everywhere.
 
 class Osk
 {
-	public:
-
+public:
 	Osk();
 	void Init(SceCtrlData *pad, SDL_Surface *ecran, char *phrase, bool *appuis);
 
-	private:
-
+private:
 	SDL_Surface *m_osk_min;
 	SDL_Surface *m_osk_maj;
 	SDL_Surface *m_osk_img;
@@ -38,7 +36,7 @@ class Osk
 
 	SDL_Rect m_osk_position;
 	SDL_Rect m_selector_position;
-	
+
 	std::string m_sentence;
 	std::string m_alphabet;
 	std::string m_alphabet_min;
@@ -51,7 +49,6 @@ class Osk
 	char m_appuisDOWN;
 	char m_appuisUP;
 	char m_minuscule;
-
 };
 
 #endif

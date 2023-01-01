@@ -33,16 +33,17 @@ int main(int argc, char **argv)
 
 	pspDebugScreenInit();
 
-	//Chargement du Modules inet
-	if(pspSdkLoadInetModules() < 0)
+	// Chargement du Modules inet
+	if (pspSdkLoadInetModules() < 0)
 	{
 		printf("Error, could not load inet modules\n");
 		sceKernelSleepThread();
 	}
 
-	//Création d'un thread dans lequel on vas "travailler"
+	// Création d'un thread dans lequel on vas "travailler"
+	// Creation of a thread in which we will "work"
 	thid = sceKernelCreateThread("net_thread", net_thread, 0x18, 0x10000, PSP_THREAD_ATTR_USER, NULL);
-	if(thid < 0)
+	if (thid < 0)
 	{
 		printf("Error, could not create thread\n");
 		sceKernelSleepThread();
@@ -51,69 +52,36 @@ int main(int argc, char **argv)
 
 	sceKernelExitDeleteThread(0);
 
-return 0;
+	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 int exit_callback(int arg1, int arg2, void *common)
 {
-sceKernelExitGame();
-return 0;
+	sceKernelExitGame();
+	return 0;
 }
 
 int CallbackThread(SceSize args, void *argp)
 {
-int cbid;
+	int cbid;
 
-cbid = sceKernelCreateCallback("Exit Callback", exit_callback, NULL);
-sceKernelRegisterExitCallback(cbid);
-sceKernelSleepThreadCB();
+	cbid = sceKernelCreateCallback("Exit Callback", exit_callback, NULL);
+	sceKernelRegisterExitCallback(cbid);
+	sceKernelSleepThreadCB();
 
-return 0;
+	return 0;
 }
 
 int SetupCallbacks(void)
 {
-int thid = 0;
+	int thid = 0;
 
-thid = sceKernelCreateThread("update_thread", CallbackThread,
-0x11, 0xFA0, PSP_THREAD_ATTR_USER, 0);
-if(thid >= 0)
-{
-sceKernelStartThread(thid, 0, 0);
-}
+	thid = sceKernelCreateThread("update_thread", CallbackThread,
+								 0x11, 0xFA0, PSP_THREAD_ATTR_USER, 0);
+	if (thid >= 0)
+	{
+		sceKernelStartThread(thid, 0, 0);
+	}
 
-return thid;
+	return thid;
 }
