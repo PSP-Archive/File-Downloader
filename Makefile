@@ -12,10 +12,11 @@ PSPBIN = $(PSPSDK)/../bin
 
 LIBDIR =
 LDFLAGS =
-STDLIBS= -lSDLmain -lSDL_image -lSDL_ttf -lSDL -lpng -ljpeg -lm -lz -lfreetype -lstdc++ -lcurl -lpsp_req\
-		-lpspsdk -lpspctrl  -lpsprtc -lpsppower -lpspgu -lpspaudiolib -lpspaudio -lpsphprm 
+STDLIBS= -lSDLmain -lSDL_image -lSDL_ttf -lSDL -lpng -ljpeg -lm -lz -lfreetype -lstdc++ -lcurl \
+		-lpspsdk -lpspctrl  -lpsprtc -lpsppower -lpspgu -lpspaudiolib -lpspaudio -lpsphprm -lbz2 -lGL -lpspvfpu -lpspirkeyb
 LIBS=$(STDLIBS)$(YOURLIBS)
 
+# BUILD_PRX = 1
 
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = File_Downloader
